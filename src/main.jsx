@@ -44,6 +44,14 @@ const router = createBrowserRouter(
           path: "/guides",
           element: <SafetyGuides></SafetyGuides>
         },
+        {
+          path: '/login',
+          element: <LoginScreen></LoginScreen>
+        },
+        {
+          path: '/dashboard',
+          element: <DashboardScreen></DashboardScreen>
+        }
       ]
     }
   ]
