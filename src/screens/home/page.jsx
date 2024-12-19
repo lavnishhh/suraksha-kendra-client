@@ -28,7 +28,7 @@ function HomeScreen() {
     }
 
     return (
-        <div className="flex flex-grow flex-col">
+        <div className="flex flex-grow flex-col overflow-y-auto">
             <div className="mx-auto">
                 <form className='md:col-span-2 flex-grow p-4 md:order-2'>
                     <h3 className="mb-5 text-3xl font-medium text-gray-900">Disaster Type</h3>
@@ -51,7 +51,7 @@ function HomeScreen() {
                     </ul>
                 </form>
                 <LocationPicker onPositionChange={(change)=>{position.current = change}}></LocationPicker>
-                <Button className="mx-4" onClick={async ()=>{await submitReport()}}>Report</Button>
+                {/* <Button className="mx-4" onClick={async ()=>{await submitReport()}}>Report</Button> */}
                 {submitted ? <p className="text-center bg-primary-500 py-2 text-white">Submitted</p> : <Button className="mx-4" onClick={async ()=>{await submitReport()}}>Report</Button>}
             </div>
         </div>
@@ -59,3 +59,32 @@ function HomeScreen() {
 }
 
 export default HomeScreen
+
+async function findSafetyPlacesIndia(lat, lng, disasterType, apiKey) {
+    const disasterMapping = {
+        earthquake: ["park", "stadium", "hospital"],
+        flood: ["lodging", "building", "school", "hospital"],
+        hurricane: ["school", "community_center", "hospital", "supermarket"],
+        wildfire: ["fire_station", "hospital", "stadium", "park"]
+    };
+
+    // Get the place types for the disaster
+    const placeTypes = disasterMapping[disasterType] || ["hospital"];
+
+    const results = [];
+    for (const type of placeTypes) {
+        const response = await fetch(
+            `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=5000&type=${type}&key=${apiKey}`
+        );
+        const data = await response.json();
+
+        if (data.status === "OK") {
+            results.push(...data.results);
+        } else {
+            console.error(`Error fetching places for type ${type}:`, data.status);
+        }
+    }
+
+    // Combine and return results
+    return results;
+}

@@ -18,7 +18,7 @@ const MapScreen = () => {
   useEffect(() => {
     if (!mapRef.current) {
       // Initialize map only if it hasn't been initialized
-      mapRef.current = L.map("map").setView([12.9757, 77.7496], 12);
+      mapRef.current = L.map("map").setView([12.980216112573299, 77.59734868843226], 12);
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution:
@@ -39,7 +39,7 @@ const MapScreen = () => {
     };
   }, [heatmapLayer]);
 
-  return <div id="map" style={{ height: "100%", width: "100%"}}></div>;
+  return <div id="map" style={{ height: "100%", width: "100%", zIndex: 5}}></div>;
 };
 
 export default MapScreen;

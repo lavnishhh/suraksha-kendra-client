@@ -322,7 +322,9 @@ export const DISASTER_GUIDES =
   },
 }
 
+class GlobalLoadingState{}
 
+export const GLOBAL_LOADING_STATE = new GlobalLoadingState();
 
 export const DISASTER_TYPES = Object.keys(DISASTER_GUIDES);
 
