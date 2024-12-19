@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc, getDocs, getDoc, doc, setDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, getDoc, doc, setDoc, collectionGroup } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { GLOBAL_ERROR_STATE } from "../../constants/constsants";
 
@@ -32,6 +32,21 @@ export const fetchReports = async () => {
   });
 
   return heatmapData;
+};
+
+
+
+export const fetchArticles = async () => {
+  const db = getFirestore();
+  const reportsRef = collectionGroup(db, "articles");
+  const snapshot = await getDocs(reportsRef);
+  const articles = [];
+
+  snapshot.forEach((doc) => {
+    articles.push(doc.data());
+  });
+
+  return articles;
 };
 
 

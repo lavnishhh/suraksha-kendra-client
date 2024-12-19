@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../../components/buttons"
 import LocationPicker from "../../components/location_picker";
-import { uploadReport } from "../../controllers/firebase/auth";
+import { fetchArticles, uploadReport } from "../../controllers/firebase/auth";
 
 function HomeScreen() {
 
