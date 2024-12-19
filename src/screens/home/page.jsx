@@ -27,12 +27,6 @@ function HomeScreen() {
         setSubmitted(true);
     }
 
-    useEffect(()=>{
-        fetchArticles().then(data=>{
-            console.log(data)
-        });
-    }, [])
-
     return (
         <div className="flex w-full min-h-screen justify-center items-center">
             <div className="mx-auto lg:w-3/4 lg:flex justify-center items-center gap-4">
