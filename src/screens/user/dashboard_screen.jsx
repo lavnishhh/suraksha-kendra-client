@@ -11,6 +11,7 @@ function DashboardScreen(){
 
     const context = useContext(UserContext);
     const user = context.user;
+    const [userData, setUserData] = useState(null);
 
     const [isSignUpMode, setIsSignUp] = useState(false)
 
@@ -30,6 +31,7 @@ function DashboardScreen(){
         }
         if(user != null){
             setShowOverlay(false);
+
         }
     }, [user])
 
@@ -54,7 +56,7 @@ function DashboardScreen(){
     return <>
         <div className="max-w-screen-xl mx-auto">
             <h1 className="text-2xl font-medium text-gray-600">Welcome, {user.displayName || user.email}</h1>
-            <Button>Sign up as a Volunteer</Button>
+            <Button onClick={()=>{navigate('/registration')}}>Sign up as a Volunteer</Button>
         </div>
     </>
 }

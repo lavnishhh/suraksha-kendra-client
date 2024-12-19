@@ -25,4 +25,4 @@ dist-ssr
 
 .env
 .firebase
-./src/main.css
+src/main.css
