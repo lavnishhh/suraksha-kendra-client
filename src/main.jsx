@@ -7,6 +7,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import NavbarComponent from './components/navbar.jsx';
 import { app } from './controllers/firebase/main.jsx';
 import MapScreen from './screens/map/page.jsx';
+import TestComponent from './screens/test/test';
 
 const AppLayout = () => {
 
@@ -37,6 +38,10 @@ const router = createBrowserRouter(
           path: "/guides",
           element: <SafetyGuides></SafetyGuides>
         },
+        {
+          path: '/test',
+          element: <TestComponent></TestComponent>
+        }
       ]
     }
   ]
