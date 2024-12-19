@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './main.css'
 import HomeScreen from './screens/home/page.jsx';
 import SafetyGuides from './screens/guides/safetyGuide.jsx';
+import SignInForm from './screens/signin/signin.jsx';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import NavbarComponent from './components/navbar.jsx';
 import { app } from './controllers/firebase/main.jsx';
@@ -39,9 +40,15 @@ const router = createBrowserRouter(
           element: <SafetyGuides></SafetyGuides>
         },
         {
+<<<<<<< HEAD
           path: '/test',
           element: <TestComponent></TestComponent>
         }
+=======
+          path: "/signin",
+          element: <SignInForm></SignInForm>
+        },
+>>>>>>> e50f50d1bd8b17393876feb0410d769edf6bbe11
       ]
     }
   ]
