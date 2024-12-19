@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../../components/buttons"
 import LocationPicker from "../../components/location_picker";
-import { uploadReport } from "../../controllers/firebase/auth";
+import { fetchArticles, uploadReport } from "../../controllers/firebase/auth";
 
 function HomeScreen() {
 
@@ -26,6 +26,12 @@ function HomeScreen() {
         await uploadReport(position.current.latitude, position.current.longitude, disasterType.current)
         setSubmitted(true);
     }
+
+    useEffect(()=>{
+        fetchArticles().then(data=>{
+            console.log(data)
+        });
+    }, [])
 
     return (
         <div className="flex w-full min-h-screen justify-center items-center">

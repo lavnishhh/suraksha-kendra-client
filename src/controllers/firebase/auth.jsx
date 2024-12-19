@@ -38,7 +38,7 @@ export const fetchReports = async () => {
 
 export const fetchArticles = async () => {
   const db = getFirestore();
-  const reportsRef = collectionGroup(db, "reports");
+  const reportsRef = collectionGroup(db, "articles");
   const snapshot = await getDocs(reportsRef);
   const articles = [];
 
