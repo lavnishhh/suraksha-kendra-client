@@ -33,7 +33,7 @@ const LocationPicker = ({ onPositionChange }) => {
         })
         .catch((error) => {
             console.error("Error fetching location:", error);
-            setPosition({latitude: 77.74964332580566, longitude: 12.975703954271719})
+            setPosition({latitude: 12.980216112573299, longitude: 77.59734868843226})
         });
     }, [])
 
@@ -62,7 +62,7 @@ const LocationPicker = ({ onPositionChange }) => {
                     <div className="flex">{spinner}<div className="ms-2">Fetching Location</div></div>:
                     <div>{`${position.longitude} ${position.latitude}`}</div>} 
             </div>
-            <MapContainer center={[position?.latitude ? position.latitude: 51.505, position?.longitude ? position?.longitude: -0.09]} zoom={13} style={{ height: "400px", width: "100%" }}>
+            <MapContainer center={[position? position.latitude: 12.980216112573299, position? position.longitude: 77.59734868843226]} zoom={10} style={{ height: "400px", width: "100%" }}>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution="&copy; OpenStreetMap contributors"

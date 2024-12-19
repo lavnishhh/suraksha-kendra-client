@@ -7,6 +7,11 @@ import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import NavbarComponent from './components/navbar.jsx';
 import { app } from './controllers/firebase/main.jsx';
 import MapScreen from './screens/map/page.jsx';
+import { ContextProvider } from './constants/context.jsx';
+import { LoginScreen } from './screens/user/login_screen.jsx';
+import DashboardScreen from './screens/user/dashboard_screen.jsx';
+import 'flowbite'
+
 
 const AppLayout = () => {
 
@@ -37,6 +42,8 @@ const router = createBrowserRouter(
           path: "/guides",
           element: <SafetyGuides></SafetyGuides>
         },
+        { path: '/login', element: <LoginScreen></LoginScreen> },
+        { path: '/dashboard', element: <DashboardScreen></DashboardScreen> },
       ]
     }
   ]
@@ -44,6 +51,8 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ContextProvider>
+      <RouterProvider router={router} />
+    </ContextProvider>
   </StrictMode>,
 )
