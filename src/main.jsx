@@ -11,6 +11,7 @@ import MapScreen from './screens/map/page.jsx';
 import { ContextProvider } from './constants/context.jsx';
 import { LoginScreen } from './screens/user/login_screen.jsx';
 import DashboardScreen from './screens/user/dashboard_screen.jsx';
+import News from './screens/News/news.jsx';
 import 'flowbite'
 
 import TestComponent from './screens/test/test';
@@ -51,6 +52,10 @@ const router = createBrowserRouter(
         {
           path: '/dashboard',
           element: <DashboardScreen></DashboardScreen>
+        },
+        {
+          path: '/news',
+          element: <News></News>
         }
       ]
     }

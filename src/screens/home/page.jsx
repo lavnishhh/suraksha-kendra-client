@@ -29,9 +29,9 @@ function HomeScreen() {
 
     return (
         <div className="flex w-full min-h-screen justify-center items-center">
-            <div className="mx-auto lg:w-3/4 lg:flex justify-center items-center gap-4">
+            <div className="mx-auto md:w-3/4 md:flex justify-center items-center gap-4">
                 <form className='md:col-span-2 flex-grow p-4 md:order-2 basis-1/2'>
-                    <h3 className="mb-5 text-3xl font-medium text-gray-900">Disaster Type</h3>
+                    <h3 className="mb-5 text-3xl font-medium text-gray-900 mt-8">Disaster Type</h3>
                     <ul className="grid gap-6 w-128" onChange={(e) => { disasterType.current = e.target.value; console.log(e.target.value) }}>
                         {
                             disasters.map((disaster, index) => {

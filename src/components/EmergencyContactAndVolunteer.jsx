@@ -41,8 +41,8 @@ const EmergencyContactAndVolunteer = () => {
             })
           }
         });
-        // Check if user is already a volunteer (this is a placeholder, replace with actual check)
-        setIsVolunteer(false); // Set this based on your actual logic
+
+        setIsVolunteer(false);
       }
     });
     return () => unsubscribe();
