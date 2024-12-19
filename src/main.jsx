@@ -4,6 +4,7 @@ import './main.css'
 import HomeScreen from './screens/home/page.jsx';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import NavbarComponent from './components/navbar.jsx';
+import { app } from './controllers/firebase/main.jsx';
 
 const AppLayout = () => {
 

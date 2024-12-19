@@ -16,7 +16,7 @@ function Button(props) {
       setIsLoading(false)
   }
 
-  return <div className={classNames(`${isLoading ? 'cursor-wait': 'cursor-pointer'} px-2 bg-primary-700 text-white border border-primary-700 hover:bg-white hover:text-primary-700 transition-colors rounded-full my-2 py-2 text-center flex justify-center items-center`, className)} onClick={handleClick}>{isLoading ? spinner : children}</div>
+  return <div className={classNames(`${isLoading ? 'cursor-wait': 'cursor-pointer'} px-2 bg-primary-500 text-white border border-primary-500 hover:bg-white hover:text-primary-500 transition-colors rounded-full my-2 py-2 text-center flex justify-center items-center`, className)} onClick={handleClick}>{isLoading ? spinner : children}</div>
 }
 
 export default Button
