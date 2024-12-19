@@ -61,6 +61,7 @@ export async function fetchUserById(id) {
 
 export async function addVolunteer(id, userData) {
     const db = getFirestore();
+    userData.type = "volunteer"
     // Reference to the user document with the provided ID
     const userDocRef = doc(db, "users", id);
 

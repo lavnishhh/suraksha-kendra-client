@@ -8,7 +8,7 @@ import { spinner } from "../../constants/spinner";
 import Button from "../../components/buttons";
 import { fetchUserById } from "../../controllers/firebase/auth";
 import { auth } from "../../controllers/firebase/main";
-import VolunteerRegistrationForm from "../../components/VolunteerRegistrationForm";
+import EmergencyContactAndVolunteer from "../../components/EmergencyContactAndVolunteer";
 
 function DashboardScreen(){
 
@@ -63,12 +63,9 @@ function DashboardScreen(){
     console.log(userData)
 
     return <>
-        <div className="max-w-screen-xl mx-auto">
-            <h1 className="text-2xl font-medium text-gray-600 mt-4">Welcome, {user.displayName || user.email}</h1>
-            <div>You are a {userData?.type? userData.type: 'User'}</div>
-            {userData == null && <Button onClick={()=>{navigate('/registration')}}>Sign up as a Volunteer</Button>}
-            {userData?.type == 'volunteer' && <VolunteerRegistrationForm data={userData}></VolunteerRegistrationForm>}
-        </div>
+    
+        <EmergencyContactAndVolunteer/>
+        
     </>
 }
 
