@@ -30,6 +30,7 @@ const LocationPicker = ({ onPositionChange }) => {
         getUserLocation()
         .then((location) => {
             console.log("User's Location:", location);
+            setPosition({latitude: location.latitude, longitude: location.longitude})
         })
         .catch((error) => {
             console.error("Error fetching location:", error);
