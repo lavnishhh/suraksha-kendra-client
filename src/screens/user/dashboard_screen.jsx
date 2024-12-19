@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { UserContext } from "../../constants/context";
 import { GLOBAL_LOADING_STATE } from "../../constants/constsants";
 import { spinner } from "../../constants/spinner";
+import Button from "../../components/buttons";
 
 function DashboardScreen(){
 
@@ -51,8 +52,9 @@ function DashboardScreen(){
     }
 
     return <>
-        <div>
+        <div className="max-w-screen-xl mx-auto">
             <h1 className="text-2xl font-medium text-gray-600">Welcome, {user.displayName || user.email}</h1>
+            <Button>Sign up as a Volunteer</Button>
         </div>
     </>
 }

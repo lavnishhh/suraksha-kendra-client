@@ -32,3 +32,18 @@ export const fetchReports = async () => {
 
   return heatmapData;
 };
+
+
+export const fetchUser = async () => {
+  const db = getFirestore();
+  const reportsRef = collection(db, "user");
+  const snapshot = await getDocs(reportsRef);
+  const heatmapData = [];
+
+  snapshot.forEach((doc) => {
+    const { latitude, longitude } = doc.data();
+    heatmapData.push([latitude, longitude, 1]); // 1 is the intensity
+  });
+
+  return heatmapData;
+};

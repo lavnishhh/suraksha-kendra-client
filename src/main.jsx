@@ -46,11 +46,10 @@ const router = createBrowserRouter(
           element: <SafetyGuides></SafetyGuides>
         },
         {
-<<<<<<< HEAD
           path: "/registration",
           element: <VolunteerRegistrationPage></VolunteerRegistrationPage>
         },
-=======
+        {
           path: '/login',
           element: <LoginScreen></LoginScreen>
         },
@@ -58,7 +57,6 @@ const router = createBrowserRouter(
           path: '/dashboard',
           element: <DashboardScreen></DashboardScreen>
         }
->>>>>>> c595f2707dc376f901e1623b5e5abfbf2d0e48c9
       ]
     }
   ]
