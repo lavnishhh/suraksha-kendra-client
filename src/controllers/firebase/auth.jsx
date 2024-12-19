@@ -1,7 +1,7 @@
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
-const uploadReport = async (latitude, longitude, type) => {
+export const uploadReport = async (latitude, longitude, type) => {
   try {
     const db = getFirestore();
     const locationData = {
@@ -18,4 +18,17 @@ const uploadReport = async (latitude, longitude, type) => {
   }
 };
 
-export default uploadReport;
+
+export const fetchReports = async () => {
+  const db = getFirestore();
+  const reportsRef = collection(db, "reports");
+  const snapshot = await getDocs(reportsRef);
+  const heatmapData = [];
+
+  snapshot.forEach((doc) => {
+    const { latitude, longitude } = doc.data();
+    heatmapData.push([latitude, longitude, 1]); // 1 is the intensity
+  });
+
+  return heatmapData;
+};
