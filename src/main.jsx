@@ -40,15 +40,15 @@ const router = createBrowserRouter(
           element: <SafetyGuides></SafetyGuides>
         },
         {
-<<<<<<< HEAD
+        
           path: '/test',
           element: <TestComponent></TestComponent>
-        }
-=======
+        },
+        {
           path: "/signin",
           element: <SignInForm></SignInForm>
         },
->>>>>>> e50f50d1bd8b17393876feb0410d769edf6bbe11
+
       ]
     }
   ]
