@@ -7,6 +7,7 @@ import SignInForm from './screens/signin/signin.jsx';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import NavbarComponent from './components/navbar.jsx';
 import { app } from './controllers/firebase/main.jsx';
+import MapScreen from './screens/map/page.jsx';
 
 const AppLayout = () => {
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter(
         {
           path: "/",
           element: <HomeScreen></HomeScreen>
+        },
+        {
+          path: "/map",
+          element: <MapScreen></MapScreen>
         },
         {
           path: "/guides",

@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Button from "../../components/buttons"
 import LocationPicker from "../../components/location_picker";
-import uploadReport from "../../controllers/firebase/auth";
+import { uploadReport } from "../../controllers/firebase/auth";
 
 function HomeScreen() {
 
@@ -51,6 +51,7 @@ function HomeScreen() {
                     </ul>
                 </form>
                 <LocationPicker onPositionChange={(change)=>{position.current = change}}></LocationPicker>
+                <Button className="mx-4" onClick={async ()=>{await submitReport()}}>Report</Button>
                 {submitted ? <p className="text-center bg-primary-500 py-2 text-white">Submitted</p> : <Button className="mx-4" onClick={async ()=>{await submitReport()}}>Report</Button>}
             </div>
         </div>
