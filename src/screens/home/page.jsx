@@ -1,16 +1,31 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Button from "../../components/buttons"
+import LocationPicker from "../../components/location_picker";
+import uploadReport from "../../controllers/firebase/auth";
 
 function HomeScreen() {
 
 
     const disasterType = useRef('earthquake');
+    const position = useRef(null)
+    const [submitted, setSubmitted] = useState(false);
 
     const disasters = [
         'earthquake',
         'flood',
-        'fire',
+        'hurricane',
+        'wildfire',
     ]
+    
+    const submitReport = async  ()=>{
+        if(position.current == null){
+            return
+        }
+        console.log(position.current)
+        console.log(disasterType.current)
+        await uploadReport(position.current.latitude, position.current.longitude, disasterType.current)
+        setSubmitted(true);
+    }
 
     return (
         <div className="flex flex-grow flex-col">
@@ -22,7 +37,7 @@ function HomeScreen() {
                             disasters.map((disaster, index) => {
                                 return <li key={disaster} onClick={() => { disasterType.current = disaster }}>
                                     <input defaultChecked={disaster == disasterType.current} required={true} type="radio" id={disaster} name="disaster-type" value={disaster} className="hidden peer" />
-                                    <label htmlFor={disaster} className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 peer-enabled:hover:bg-gray-100 peer-disabled:text-gray-300">
+                                    <label htmlFor={disaster} className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 peer-enabled:hover:bg-primary-500 peer-enabled:hover:text-white peer-disabled:text-gray-300">
                                         <div className="block flex-grow">
                                             <div className='flex justify-between'>
                                                 <div className="w-full font-semibold">{disaster}</div>
@@ -35,7 +50,8 @@ function HomeScreen() {
 
                     </ul>
                 </form>
-                <Button className="mx-4">Report</Button>
+                <LocationPicker onPositionChange={(change)=>{position.current = change}}></LocationPicker>
+                {submitted ? <p className="text-center bg-primary-500 py-2 text-white">Submitted</p> : <Button className="mx-4" onClick={async ()=>{await submitReport()}}>Report</Button>}
             </div>
         </div>
     )
