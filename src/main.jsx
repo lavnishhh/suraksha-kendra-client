@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './main.css'
 import HomeScreen from './screens/home/page.jsx';
 import SafetyGuides from './screens/guides/safetyGuide.jsx';
+import SignInForm from './screens/signin/signin.jsx';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import NavbarComponent from './components/navbar.jsx';
 import { app } from './controllers/firebase/main.jsx';
@@ -12,6 +13,7 @@ import { LoginScreen } from './screens/user/login_screen.jsx';
 import DashboardScreen from './screens/user/dashboard_screen.jsx';
 import 'flowbite'
 
+import TestComponent from './screens/test/test';
 
 const AppLayout = () => {
 
@@ -42,8 +44,6 @@ const router = createBrowserRouter(
           path: "/guides",
           element: <SafetyGuides></SafetyGuides>
         },
-        { path: '/login', element: <LoginScreen></LoginScreen> },
-        { path: '/dashboard', element: <DashboardScreen></DashboardScreen> },
       ]
     }
   ]

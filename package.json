@@ -11,9 +11,11 @@
     "tailwind": "npx tailwindcss -i ./dev/slave.css -o ./src/main.css --watch"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.20.3",
     "classnames": "^2.5.1",
     "firebase": "^11.1.0",
     "flowbite-react": "^0.10.2",
+    "jsx": "^0.9.89",
     "leaflet": "^1.9.4",
     "leaflet.heat": "^0.2.0",
     "react": "^19.0.0",
