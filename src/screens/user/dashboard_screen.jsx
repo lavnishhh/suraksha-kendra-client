@@ -6,6 +6,9 @@ import { UserContext } from "../../constants/context";
 import { GLOBAL_LOADING_STATE } from "../../constants/constsants";
 import { spinner } from "../../constants/spinner";
 import Button from "../../components/buttons";
+import { fetchUserById } from "../../controllers/firebase/auth";
+import { auth } from "../../controllers/firebase/main";
+import VolunteerRegistrationForm from "../../components/VolunteerRegistrationForm";
 
 function DashboardScreen(){
 
@@ -31,7 +34,11 @@ function DashboardScreen(){
         }
         if(user != null){
             setShowOverlay(false);
-
+            if(userData == null && user.uid){
+                fetchUserById(user.uid).then(data=>{
+                    setUserData(data)
+                })
+            }
         }
     }, [user])
 
@@ -53,10 +60,14 @@ function DashboardScreen(){
         return <div className="flex justify-center flex-grow items-center">{spinner}</div>
     }
 
+    console.log(userData)
+
     return <>
         <div className="max-w-screen-xl mx-auto">
-            <h1 className="text-2xl font-medium text-gray-600">Welcome, {user.displayName || user.email}</h1>
-            <Button onClick={()=>{navigate('/registration')}}>Sign up as a Volunteer</Button>
+            <h1 className="text-2xl font-medium text-gray-600 mt-4">Welcome, {user.displayName || user.email}</h1>
+            <div>You are a {user.type}</div>
+            {userData == null && <Button onClick={()=>{navigate('/registration')}}>Sign up as a Volunteer</Button>}
+            {userData?.type == 'volunteer' && <VolunteerRegistrationForm data={userData}></VolunteerRegistrationForm>}
         </div>
     </>
 }

@@ -326,5 +326,9 @@ class GlobalLoadingState{}
 
 export const GLOBAL_LOADING_STATE = new GlobalLoadingState();
 
+class GlobalErrorState{}
+
+export const GLOBAL_ERROR_STATE = new GlobalErrorState();
+
 export const DISASTER_TYPES = Object.keys(DISASTER_GUIDES);
 

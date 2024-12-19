@@ -1,14 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { app, auth } from '../controllers/firebase/main';
+import { spinner } from '../constants/spinner';
+import { getAuth } from 'firebase/auth';
+import { GLOBAL_LOADING_STATE } from '../constants/constsants';
+import { addVolunteer } from '../controllers/firebase/auth';
+import { useNavigate } from 'react-router-dom';
 // import { addVolunteer } from '../lib/firebase';
 
-const VolunteerRegistrationForm = ()=> {
+const VolunteerRegistrationForm = (props) => {
+
+  const {data} = props; 
+
+  const [user, setUser] = useState(GLOBAL_LOADING_STATE);
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const auth = getAuth(app);
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+      if(user){
+        setFormData({
+          ...formData,
+          email: user?.email
+        })
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     age: '',
     gender: '',
     skills: '',
     email: '',
-    contactNumber: ''
+    contactNumber: '',
+    ...data
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,22 +56,20 @@ const VolunteerRegistrationForm = ()=> {
     setSubmitMessage('');
 
     try {
-      await addVolunteer(formData);
+      await addVolunteer(user.uid, formData);
       setSubmitMessage('Registration Successful. Thank you for volunteering!');
-      setFormData({
-        name: '',
-        age: '',
-        gender: '',
-        skills: '',
-        email: '',
-        contactNumber: ''
-      });
+      navigate('/dashboard')
     } catch (error) {
+      console.log(error)
       setSubmitMessage('Registration Failed. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  if (user == null) {
+    return <div className='flex flex-grow items-center justify-center'>{spinner}</div>
+  }
 
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-6">
@@ -56,7 +82,7 @@ const VolunteerRegistrationForm = ()=> {
           required
           value={formData.name}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
         />
       </div>
 
@@ -69,7 +95,7 @@ const VolunteerRegistrationForm = ()=> {
           required
           value={formData.age}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
         />
       </div>
 
@@ -84,7 +110,7 @@ const VolunteerRegistrationForm = ()=> {
                 value={gender}
                 checked={formData.gender === gender}
                 onChange={handleChange}
-                className="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                className="form-radio h-4 w-4 text-primary-600 transition duration-150 ease-in-out"
               />
               <span className="ml-2 capitalize">{gender}</span>
             </label>
@@ -101,7 +127,7 @@ const VolunteerRegistrationForm = ()=> {
           required
           value={formData.skills}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
         ></textarea>
       </div>
 
@@ -114,7 +140,7 @@ const VolunteerRegistrationForm = ()=> {
           required
           value={formData.email}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
         />
       </div>
 
@@ -127,7 +153,7 @@ const VolunteerRegistrationForm = ()=> {
           required
           value={formData.contactNumber}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
         />
       </div>
 
@@ -135,9 +161,9 @@ const VolunteerRegistrationForm = ()=> {
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
-          {isSubmitting ? 'Submitting...' : 'Register as Volunteer'}
+          {isSubmitting ? 'Submitting...' : 'Addd Volunteer Data'}
         </button>
       </div>
 
