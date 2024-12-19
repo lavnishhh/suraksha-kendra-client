@@ -9,9 +9,9 @@ function SafetyGuides() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-                <h1 className="text-3xl font-bold text-center text-gray-900 mb-8">Disaster Safety Guides</h1>
+        <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-6">
+            <div className="max-w-6xl mx-auto">
+                <h1 className="text-3xl font-bold text-center text-primary-500 mb-8">Disaster Safety Guides</h1>
 
                 <select
                     value={selectedDisaster}

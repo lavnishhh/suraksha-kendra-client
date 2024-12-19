@@ -32,14 +32,14 @@ const EmergencyContactAndVolunteer = () => {
           ...prevState,
           email: user.email
         }));
-        fetchUserById(user.uid).then(data=>{
-            if(data && data!=GLOBAL_ERROR_STATE){
+        fetchUserById(user.uid).then(data => {
+          if (data && data != GLOBAL_ERROR_STATE) {
 
-                setFormData({
-                    ...formData,
-                    ...data
-                })
-            }
+            setFormData({
+              ...formData,
+              ...data
+            })
+          }
         });
         // Check if user is already a volunteer (this is a placeholder, replace with actual check)
         setIsVolunteer(false); // Set this based on your actual logic
@@ -84,35 +84,34 @@ const EmergencyContactAndVolunteer = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-gray-100 flex-col md:flex-row">
       {/* Sidebar */}
-      <div className="w-64 bg-white shadow-md">
-        <div className="p-4">
-          <h2 className="text-xl font-semibold mb-4">Options</h2>
-          <ul>
-            <li>
-              <button
-                className={`w-full text-left py-2 px-4 rounded ${activeTab === 'emergency' ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'}`}
-                onClick={() => setActiveTab('emergency')}
-              >
-                Add Emergency Contact
-              </button>
-            </li>
-            <li>
-              <button
-                className={`w-full text-left py-2 px-4 rounded ${activeTab === 'volunteer' ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'} ${isVolunteer ? 'opacity-50 cursor-not-allowed' : ''}`}
-                onClick={() => !isVolunteer && setActiveTab('volunteer')}
-                disabled={isVolunteer}
-              >
-                Sign Up as Volunteer
-              </button>
-            </li>
-          </ul>
+      <div className=" bg-white shadow-md ">
+        <h2 className="text-xl font-semibold mb-1 text-neutral-500 p-4">Dashboard</h2>
+        <div className="p-4 flex md:flex-col flex-row">
+
+
+          <button
+            className={`w-full text-left py-2 px-4 rounded ${activeTab === 'emergency' ? 'bg-primary-500 text-white' : 'hover:bg-gray-200'}`}
+            onClick={() => setActiveTab('emergency')}
+          >
+            Add Emergency Contact
+          </button>
+
+          <button
+            className={`w-full text-left py-2 px-4 rounded ${activeTab === 'volunteer' ? 'bg-primary-500 text-white' : 'hover:bg-gray-200'} ${isVolunteer ? 'opacity-50 cursor-not-allowed' : ''}`}
+            onClick={() => !isVolunteer && setActiveTab('volunteer')}
+            disabled={isVolunteer}
+          >
+            Sign Up as Volunteer
+          </button>
+
+
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-6 md:p-36 ">
         {activeTab === 'emergency' && (
           <div>
             <h2 className="text-2xl font-bold mb-4">Add Emergency Contacts</h2>
@@ -136,7 +135,7 @@ const EmergencyContactAndVolunteer = () => {
             ))}
             <button
               onClick={addEmergencyContact}
-              className="mt-2 p-2 bg-green-500 text-white rounded hover:bg-green-600"
+              className="mt-2 p-2 bg-neutral-700 text-white rounded hover:bg-neutral-800"
             >
               + Add Another Contact
             </button>

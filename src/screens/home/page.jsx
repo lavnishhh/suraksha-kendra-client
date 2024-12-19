@@ -6,19 +6,19 @@ import { uploadReport } from "../../controllers/firebase/auth";
 function HomeScreen() {
 
 
-    const disasterType = useRef('earthquake');
+    const disasterType = useRef('Earthquake');
     const position = useRef(null)
     const [submitted, setSubmitted] = useState(false);
 
     const disasters = [
-        'earthquake',
-        'flood',
-        'hurricane',
-        'wildfire',
+        'Earthquake',
+        'Flood',
+        'Hurricane',
+        'Wildfire',
     ]
-    
-    const submitReport = async  ()=>{
-        if(position.current == null){
+
+    const submitReport = async () => {
+        if (position.current == null) {
             return
         }
         console.log(position.current)
@@ -28,11 +28,11 @@ function HomeScreen() {
     }
 
     return (
-        <div className="flex flex-grow flex-col overflow-y-auto">
-            <div className="mx-auto">
-                <form className='md:col-span-2 flex-grow p-4 md:order-2'>
+        <div className="flex w-full min-h-screen justify-center items-center">
+            <div className="mx-auto lg:w-3/4 lg:flex justify-center items-center gap-4">
+                <form className='md:col-span-2 flex-grow p-4 md:order-2 basis-1/2'>
                     <h3 className="mb-5 text-3xl font-medium text-gray-900">Disaster Type</h3>
-                    <ul className="grid gap-6 w-96" onChange={(e) => { disasterType.current = e.target.value; console.log(e.target.value) }}>
+                    <ul className="grid gap-6 w-128" onChange={(e) => { disasterType.current = e.target.value; console.log(e.target.value) }}>
                         {
                             disasters.map((disaster, index) => {
                                 return <li key={disaster} onClick={() => { disasterType.current = disaster }}>
@@ -50,9 +50,12 @@ function HomeScreen() {
 
                     </ul>
                 </form>
-                <LocationPicker onPositionChange={(change)=>{position.current = change}}></LocationPicker>
-                {/* <Button className="mx-4" onClick={async ()=>{await submitReport()}}>Report</Button> */}
-                {submitted ? <p className="text-center bg-primary-500 py-2 text-white">Submitted</p> : <Button className="mx-4" onClick={async ()=>{await submitReport()}}>Report</Button>}
+                <div className="basis-1/2 flex-col gap-4">
+                    <LocationPicker onPositionChange={(change) => { position.current = change }}></LocationPicker>
+                    {/* <Button className="mx-4" onClick={async ()=>{await submitReport()}}>Report</Button> */}
+                    {submitted ? <p className="text-center bg-primary-500 py-2 text-white">Submitted</p> : <Button className="mx-4 my-4" onClick={async () => { await submitReport() }}>Report</Button>}
+                </div>
+
             </div>
         </div>
     )

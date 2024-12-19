@@ -43,11 +43,15 @@ function Navbar() {
 
         </div>
         <ul className="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
+
           <li>
             <Link to='/' className="flex text-sm font-medium text-gray-900 hover:text-primary-700">Report</Link>
           </li>
           <li className="shrink-0">
             <Link to='/map' className="flex text-sm font-medium text-gray-900 hover:text-primary-700">Map</Link>
+          </li>
+          <li>
+            <Link to='/guides' className="hover:text-primary-700">Safety Guide</Link>
           </li>
 
         </ul>
@@ -88,6 +92,9 @@ function Navbar() {
           </li>
           <li>
             <Link to='/map' className="hover:text-primary-700">Map</Link>
+          </li>
+          <li>
+            <Link to='/guides' className="hover:text-primary-700">Safety Guide</Link>
           </li>
         </ul>
       </div>
