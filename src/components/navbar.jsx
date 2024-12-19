@@ -51,7 +51,7 @@ function Navbar() {
             <Link to='/map' className="flex text-sm font-medium text-gray-900 hover:text-primary-700">Map</Link>
           </li>
           <li>
-            <Link to='/guides' className="hover:text-primary-700">Safety Guide</Link>
+            <Link to='/guides' className="flex text-sm font-medium text-gray-900 hover:text-primary-700">Safety Guide</Link>
           </li>
 
         </ul>
