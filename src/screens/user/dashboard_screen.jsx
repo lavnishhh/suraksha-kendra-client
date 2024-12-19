@@ -65,7 +65,7 @@ function DashboardScreen(){
     return <>
         <div className="max-w-screen-xl mx-auto">
             <h1 className="text-2xl font-medium text-gray-600 mt-4">Welcome, {user.displayName || user.email}</h1>
-            <div>You are a {user.type}</div>
+            <div>You are a {userData?.type? userData.type: 'User'}</div>
             {userData == null && <Button onClick={()=>{navigate('/registration')}}>Sign up as a Volunteer</Button>}
             {userData?.type == 'volunteer' && <VolunteerRegistrationForm data={userData}></VolunteerRegistrationForm>}
         </div>
