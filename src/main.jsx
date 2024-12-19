@@ -12,6 +12,7 @@ import { ContextProvider } from './constants/context.jsx';
 import { LoginScreen } from './screens/user/login_screen.jsx';
 import DashboardScreen from './screens/user/dashboard_screen.jsx';
 import News from './screens/News/news.jsx';
+import VolunteerList from './components/helpContacts.jsx';
 import 'flowbite'
 
 import TestComponent from './screens/test/test';
@@ -56,6 +57,10 @@ const router = createBrowserRouter(
         {
           path: '/news',
           element: <News></News>
+        },
+        {
+          path: '/volunteers',
+          element: <VolunteerList></VolunteerList>
         }
       ]
     }

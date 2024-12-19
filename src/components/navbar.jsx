@@ -56,6 +56,9 @@ function Navbar() {
           <li>
             <Link to='/news' className="hover:text-primary-700">News</Link>
           </li>
+          <li>
+            <Link to='/volunteers' className="hover:text-primary-700">Volunteers</Link>
+          </li>
 
         </ul>
         <div className="flex items-center lg:space-x-2">
@@ -101,6 +104,9 @@ function Navbar() {
           </li>
           <li>
             <Link to='/news' className="hover:text-primary-700">News</Link>
+          </li>
+          <li>
+            <Link to='/volunteers' className="hover:text-primary-700">Volunteers</Link>
           </li>
         </ul>
       </div>
