@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
 import { app } from "../controllers/firebase/main";
+import LocationPicker from "./location_picker";
 
 
 const db = getFirestore(app);
@@ -10,6 +11,7 @@ export default function VolunteerList() {
     const [volunteers, setVolunteers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const position = useRef({latitude: 12.97194, longitude: 77.59369})
 
     useEffect(() => {
         async function fetchVolunteers() {
@@ -34,6 +36,7 @@ export default function VolunteerList() {
 
     return (
         <div>
+            <div><LocationPicker onPositionChange={(change) => { position.current = change }}></LocationPicker></div>
             <h1>Volunteer List</h1>
             {volunteers.length === 0 ? (
                 <p>No volunteers found.</p>
@@ -41,7 +44,7 @@ export default function VolunteerList() {
                 <ul>
                     {volunteers.map((volunteer) => (
                         <li key={volunteer.id}>
-                            <strong>{volunteer.name}</strong>: {volunteer.contactNumber}
+                            <strong>{volunteer.name}</strong>: {volunteer.contactNumber} <a href={`sms:+91${volunteer.contactNumber}?body=Hello, please help. I am at https://www.google.com/maps/@${position.current.latitude},${position.current.longitude},2239m}!`}>Send SMS</a>
                         </li>
                     ))}
                 </ul>

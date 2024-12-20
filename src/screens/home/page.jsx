@@ -28,7 +28,7 @@ function HomeScreen() {
     }
 
     return (
-        <div className="flex w-full min-h-screen justify-center items-center">
+        <div className="flex w-full min-h-screen justify-center items-center overflow-y-auto">
             <div className="mx-auto md:w-3/4 md:flex justify-center items-center gap-4">
                 <form className='md:col-span-2 flex-grow p-4 md:order-2 basis-1/2'>
                     <h3 className="mb-5 text-3xl font-medium text-gray-900 mt-8">Disaster Type</h3>
