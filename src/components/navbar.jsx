@@ -34,7 +34,7 @@ function NavbarComponent() {
   };
 
   return <Navbar fluid rounded>
-    <Navbar.Brand href="https://flowbite-react.com">
+    <Navbar.Brand href="/">
       <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Suraksha Kendra</span>
     </Navbar.Brand>
     <div className="flex md:order-2">
