@@ -2,8 +2,9 @@ import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../constants/context";
 import { auth } from "../controllers/firebase/main";
+import { Avatar, Dropdown, Navbar } from "flowbite-react";
 
-function Navbar() {
+function NavbarComponent() {
 
   const context = useContext(UserContext);
   const user = context.user;
@@ -30,6 +31,44 @@ function Navbar() {
     console.log("signing out")
     console.log(authState);
   };
+
+  return <Navbar fluid rounded>
+    <Navbar.Brand href="https://flowbite-react.com">
+      <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Suraksha Kendra</span>
+    </Navbar.Brand>
+    <div className="flex md:order-2">
+      <Dropdown
+        arrowIcon={false}
+        inline
+        label={
+          <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+        }
+      >
+
+        <Dropdown.Item>
+          <Link to='/dashboard' className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100">My Account</Link>
+
+        </Dropdown.Item>
+        <Dropdown.Divider />
+        <Dropdown.Item>
+          <div className="p-2 text-sm font-medium text-gray-900">
+            <a className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100" onClick={handleAccountState}>{authState == null ? 'Sign in' : 'Sign out'}</a>
+          </div>
+        </Dropdown.Item>
+      </Dropdown>
+      <Navbar.Toggle />
+    </div>
+    <Navbar.Collapse className="border-b pb-1">
+      <Link className="py-1" to="/">
+        Home
+      </Link>
+      <Link className="py-1" to="/">Report</Link>
+      <Link className="py-1" to="/map">Map</Link>
+      <Link className="py-1" to="/guides">Safety Guides</Link>
+      <Link className="py-1" to="/news">News</Link>
+      <Link className="py-1" to="/volunteers">Volunteers</Link>
+    </Navbar.Collapse>
+  </Navbar>
 
   return <nav className="bg-white antialiased border-b z-50">
     <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-4">
@@ -116,4 +155,4 @@ function Navbar() {
 
 }
 
-export default Navbar
+export default NavbarComponent
