@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../constants/context";
 import { auth } from "../controllers/firebase/main";
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import AvatarImage from "../assets/avatar.jpg";
 
 function NavbarComponent() {
 
@@ -41,7 +42,7 @@ function NavbarComponent() {
         arrowIcon={false}
         inline
         label={
-          <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+          <Avatar alt="User settings" img={AvatarImage} rounded />
         }
       >
 
@@ -59,9 +60,6 @@ function NavbarComponent() {
       <Navbar.Toggle />
     </div>
     <Navbar.Collapse className="border-b pb-1">
-      <Link className="py-1" to="/">
-        Home
-      </Link>
       <Link className="py-1" to="/">Report</Link>
       <Link className="py-1" to="/map">Map</Link>
       <Link className="py-1" to="/guides">Safety Guides</Link>
